@@ -1,0 +1,64 @@
+<h3>Overview</h3>
+<p>The ReflectBlock plugin for MODX Revolution blocks, and logs all requests that contain the word &quot;reflect&quot;. Users trying to find any file with the word &quot;reflect&quot; in the URL, will get a 403 - Forbidden error and a message telling them that the reflect snippet does not exist at the site. </p>
+
+<p>When examining the log, you'll see would-be evildoers looking for versions of the old reflect snippet, a minor security vulnerability in older versions of MODX. The requests are harmless, since the reflect snippet does not exist on any Revolution sites, but it's annoying to see them sucking bandwidth trying to find it. Once you know who they are you can block them in .htaccess. The log is also useful in seeing what requests get past any rules in the .htaccess file.</p>
+
+<p>It is much faster and more efficient to block the requests in the .htaccess file, but this plugin will do the job for those who either don't have access to the .htaccess file or aren't comfortable altering it.</p>
+
+<p>The plugin will not slow down your site because it only executes when a request fails and a page-not-found requests is issued.</p>
+
+<p>Note that if you have an Adsense site, every reflect request will be followed by one or more visits from the GoogleBot looking for the same URL. You'll also see the GoogleBot failing to find the unpublished report pages when you access them.</p>
+
+<p>You can prevent some of that with these lines in your robots.txt file. Adjust the file suffix as necessary based on the configuration of your site.</p>
+
+<pre>
+    User-agent: Mediapartners-Google*
+    Disallow: reflect-block-log-report.html
+</pre>
+        
+<h3>Installing ReflectBlock</h3>
+
+<p>Go to System | Package Management and click on the &quot;Download Extras&quot; button. Put &quot;ReflectBlock&quot; in the search box and press &quot;Enter&quot;. Click on the &quot;Download&quot; button next to ReflectBlock on the right side of the grid. Wait until the &quot;Download&quot; button changes to &quot;Downloaded&quot; and click on the &quot;Finish&quot; button.</p>
+
+<p>The ReflectBlock package should appear in the Package Manager grid. Clock on the &quot;Install&quot; button and respond to the forms presented. That's it. Once the install finishes, logging will begin immediately. The ReflectBlock plugin will be installed and active, and you'll get the snippet/resource pairs that will let you view the log created by the plugin.</p>
+
+<h3>The Log</h3>
+<p>When a &quot;reflect&quot; page is requested, an entry is written to the reflctblock.log.log file (inside the logs/ directory below the MODX core directory). The misspelling is intentional &mdash; without it, you'd be prevented from viewing the log. You'll see the same misspelling (for the same reason) in the alias of the resource that shows the log. The log entry will include the IP of the visitor, the Host of the visitor, the time of the visit, the user agent, and the request itself.</p>
+        
+<p>Remember that there will be an entry for every reflect request, so there may be a lot of duplicates. The log is limited to 300 entries by default. You can set a different limit with the &amp;log_max_lines property. New entries will be added at the top and old ones will scroll off the bottom. You can also edit the file on the Files tab in the Manager (core/logs/reflctblock.log), delete the contents, and save the empty file to start a new log. </p>
+
+<p>If you have the ReflectBlock plugin and the LogPageNotFound plugin enabled, you won't see the various reflect requests in the Page Not Found log. If the ReflectBlock plugin is disabled or not installed, you'll see plenty of them if your site contains the word &quot;MODX&quot; or is otherwise identifiable as a MODX site.</p>
+
+<h3>Properties</h3>
+<p>At present, the only settable property for the ReflectBlock plugin is &amp;log_max_lines, which sets the maximum number of entries in the log. The default value is 300.</p>
+        
+<p>The ReflectBlockLogReport snippet has two properties: &amp;table_width (to set the width of the table) and &amp;cell_width (to set the width of each cell). Feel free to adjust them to meet your needs. Set them in the snippet tag on the Reflect Block Log Report page.</p>
+
+<h3>Reports</h3>
+<p>The report snippet and the resource to execute it are included in the package. The Reflect Block Log Report resource is unpublished and hidden from menus by default, but you can still view the log by previewing that resource from the Manager when you are logged in as a Super User.</p>
+
+<h3>Caution</h3>        
+<p>If you see serious repeat offenders in the log, you can block them by IP with code like this in your .htaccess file (using their actual IPs):</p>
+<pre>
+    order allow,deny
+    deny from 127.0.0.2
+    deny from 127.0.0.3
+    deny from 127.0.0.4
+    allow from all
+</pre>
+<p>Blocking users in the .htaccess file is extremely fast and it stops the users dead before they even reach the site. It's not all that practical, however, since people can spoof IPs, there are zillions of evildoers out there, and the request can be from an IP that might later be assigned to a legitimate user. Be sure to note the host before adding an IP block. You don't want to block the GoogleBot or yourself. The User Agent can be helpful here, but many evildoers will fake the User Agent and pretend to be the GoogleBot.</p>
+        
+<p>In many ways, it's safer to block users with redirect rules based on what they are looking for. This will block almost all reflect requests:</p>
+
+<pre><fixedpre>
+    RewriteCond %{REQUEST_URI} reflect [NC,OR]
+    RewriteCond %{QUERY_STRING} reflect [NC]
+    RewriteRule .* - [F,L]
+</fixedpre></pre>
+
+<p>Include the &quot;OR&quot; directive on every condition but the last.</p>
+
+<p>You should *always* back up your .htaccess file before making any changes! If there are errors in the .htaccess file, all visitors to your site may get a server 500 error.</p>
+
+
+<p>&nbsp;</p>
