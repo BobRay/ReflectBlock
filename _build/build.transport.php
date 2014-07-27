@@ -28,11 +28,19 @@
  * @subpackage build
  */
 
+/* not used -- here to prevent E_NOTICE warnings */
+if (!defined('MODX_BASE_URL')) {
+    define('MODX_BASE_URL', 'http://localhost/addons/');
+    define('MODX_MANAGER_URL', 'http://localhost/addons/manager/');
+    define('MODX_ASSETS_URL', 'http://localhost/addons/assets/');
+    define('MODX_CONNECTORS_URL', 'http://localhost/addons/connectors/');
+}
+
 /* Set package info be sure to set all of these */
 define('PKG_NAME','ReflectBlock');
 define('PKG_NAME_LOWER','reflectblock');
-define('PKG_VERSION','1.0.0');
-define('PKG_RELEASE','beta1');
+define('PKG_VERSION','1.1.0');
+define('PKG_RELEASE','pl');
 define('PKG_CATEGORY','ReflectBlock');
 
 /* Set package options - you can turn these on one-by-one
