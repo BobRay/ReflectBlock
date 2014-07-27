@@ -24,6 +24,9 @@
 /* Sends a 503 and "go away" message to request with the word 'reflect' anywhere in the URL.
  * Important: be sure nothing on your site has the word reflect in the url */
 
+/** @var $modx modX */
+/** @var $scriptProperties array */
+
 if (!function_exists("get_host")) {
     function get_host($ip)
     {
@@ -96,3 +99,5 @@ if (stristr($_SERVER['REQUEST_URI'], 'reflect') || stristr($_SERVER['QUERY_STRIN
     exit();
 
 }
+
+return '';
