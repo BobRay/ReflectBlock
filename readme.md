@@ -1,9 +1,14 @@
 ReflectBlock Extra for MODx Revolution
 ======================================
 
-**Author:** Bob Ray <http://bobsguides.com> [Bob's Guides](http://bobsguides.com)
+**Author:** Bob Ray [Bob's Guides](https://bobsguides.com)
 
-Documentation is available at [Bob's Guides](http://bobsguides.com/reflectblock-tutorial.html)
+**Documentation:** [ReflectBlock Docs](https://bobsguides.com/reflectblock-tutorial.html)
+
+**Bugs and Requests:** [ReflectBlock Issues](https://github.com/BobRay/ReflectBlock/issues)
+
+**Questions about using ReflectBlock** [MODx Forums](https://forums.modx.com)
+
 
 ReflectBlock is a plugin for MODx Revolution that blocks, and logs, requests containing the word reflect. Many evildoers scan sites looking for the old reflect snippet that was a minor security vulnerability in older versions of MODX.
 

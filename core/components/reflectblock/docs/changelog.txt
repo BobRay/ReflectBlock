@@ -1,5 +1,9 @@
 Changelog for ReflectBlock
 
+ReflectBlock 1.2.0
+-------------------
+Fix potential XSS vulnerability
+
 ReflectBlock 1.0.0
 -------------------
 Initial Version

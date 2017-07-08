@@ -2,7 +2,7 @@
 /**
  * ReflectBlock Plugin
  *
- * Copyright 2011-2014 Bob Ray <http://bobsguides.com>
+ * Copyright 2011-2017 Bob Ray <https://bobsguides.com>
  *
  * ReflectBlock is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -59,6 +59,8 @@ if (!function_exists("logLine")) {
                     $bLogLine = implode('', $log);
                     $fp = fopen($file, 'w');
                 }
+                $blogLine = strip_tags($bLogLine);
+                $bLogLine = htmlspecialchars($bLogLine, ENT_QUOTES, 'UTF-8');
                 fputs($fp, $bLogLine);
                 fclose($fp);
             }

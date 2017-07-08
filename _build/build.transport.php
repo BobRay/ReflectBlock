@@ -2,7 +2,7 @@
 /**
  * ReflectBlock Build Script
  *
- * Copyright 2011 Bob Ray <http://bobsguides.com>
+ * Copyright 2011-2017 Bob Ray <https://bobsguides.com>
  *
  * ReflectBlock is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -39,7 +39,7 @@ if (!defined('MODX_BASE_URL')) {
 /* Set package info be sure to set all of these */
 define('PKG_NAME','ReflectBlock');
 define('PKG_NAME_LOWER','reflectblock');
-define('PKG_VERSION','1.1.0');
+define('PKG_VERSION','1.2.0');
 define('PKG_RELEASE','pl');
 define('PKG_CATEGORY','ReflectBlock');
 

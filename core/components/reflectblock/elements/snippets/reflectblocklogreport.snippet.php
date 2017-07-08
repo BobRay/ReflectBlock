@@ -1,7 +1,7 @@
 <?php
 /**
  * ReflectBlockLogReport
- * Copyright 2011 Bob Ray
+ * Copyright 2011-2017 Bob Ray
  *
  * ReflectBlockLogReport is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,7 +17,7 @@
  * Suite 330, Boston, MA 02111-1307 USA
  *
  * @package reflectblock
- * @author Bob Ray <http://bobsguides.com>
+ * @author Bob Ray <https://bobsguides.com>
  
  *
  * Description: The Reflect BlockLogReport snippet presents the contents of the Reflect Block log as a table.
@@ -45,6 +45,8 @@ if ($fp) {
         $lineArray = explode('`',$line);
         $output .= "\n   <tr>";
         foreach($lineArray as $item) {
+            $item = strip_tags($item);
+            $item = htmlspecialchars($item, ENT_QUOTES, 'UTF-8');
             $output .= "\n" . '      <td style="word-break:break-all;" width="' . $cellWidth . '">' . $item . '</td>';
         }
         $output .= "\n   </tr>";
